@@ -1,0 +1,3 @@
+export const TASK_TITLE_MAX_LENGTH = 30
+export const TASK_DESCRIPTION_MAX_LENGTH = 500
+export const GOAL_TEXT_MAX_LENGTH = 100

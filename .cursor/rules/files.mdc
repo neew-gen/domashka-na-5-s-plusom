@@ -1,0 +1,28 @@
+---
+description: Cross-cutting code conventions for task-tracker
+alwaysApply: true
+---
+
+- в файлах `*.constant.ts` / `*constants*` — только константы; функции и классы — в `classes` / месте использования
+- не писать `as const`, если это не обязательно
+- в первую очередь использовать компоненты из `components/UI`
+- lodash всегда `import _ from 'lodash'`
+- если `computed` используется только в одном месте — не выносить в composable
+- из файла composable наружу экспортируется только `useXxx`; хелперы снаружи — в `libs/classes/*-lib.ts`
+- тип на один usage — инлайнить
+- не добавлять static-фабрики, которые только прокидывают поля в `new Class(...)`
+- если у конструктора больше 3 параметров — один объект `args`
+- приведение к boolean — через `Boolean(...)`, не `!!`
+- не ставить `;` в начале строки
+- `if` с единственным `throw` — в одну строку без `{}`
+- диспетчеризация по discriminant union — `switch`, не цепочка `if`
+- Vue `watch` / `watchEffect` запрещены по умолчанию
+- внутри Vue `<script setup>` — только стрелочные функции
+- во Vue сразу после импортов: `defineModel` → `defineProps` → остальное
+- Vue-модалки: внутри `:is-show="true"`, снаружи `v-if` + emit закрытия
+- условное поле объекта: `key: condition ? value : undefined`, не spread ternary
+- в `defineEmits` payload без имён аргументов: `saved: [TFoo]`
+- результат вызова API всегда в переменной `res`
+- `useTemplateRef` не типизировать дженериком без необходимости
+- массивы в типах через `T[]`, не `Array<T>`
+- UI copy: без сокращений, кроме дней недели; важность полными словами

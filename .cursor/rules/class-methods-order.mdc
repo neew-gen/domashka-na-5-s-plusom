@@ -1,0 +1,47 @@
+---
+description: Порядок объявления методов в классах
+globs: **/*.ts
+alwaysApply: false
+---
+
+# Порядок методов в классе
+
+При создании и рефакторинге классов соблюдай порядок объявления членов:
+
+1. `constructor`
+2. **публичные** методы — сверху вниз в порядке их важности/использования
+3. **приватные** методы — сразу после публичных, в порядке **первого обращения** при чтении публичных методов сверху вниз
+
+## Как определять порядок приватных методов
+
+Читай публичные методы класса сверху вниз. Каждый приватный метод ставь в список при **первом** упоминании `this.methodName(...)`:
+
+- если приватный метод A вызывает приватный метод B — **A выше, B ниже** (вызывающий перед вызываемым)
+- листовые хелперы без собственных приватных зависимостей — в самом низу
+
+Не группируй приватные методы по смыслу, если это ломает порядок первого использования.
+
+## Пример
+
+```typescript
+export class TowersCanBuild {
+  constructor(...) {}
+
+  public getTowerWithCanUpgrade() {
+    this.getLevels(...)              // 1
+    this.getCanUpgradeOption(...)    // 2
+    this.getAvailableResourceAmount(...) // позже, через getLevels/getResourceForUpgrade
+  }
+
+  public check() {
+    this.getLevels(...)              // уже встречался
+    this.getUpgradeCanDo(...)        // 3
+  }
+
+  private getLevels(...) { ... }                    // 1
+  private getCanUpgradeOption(...) { ... }          // 2
+  private getUpgradeCanDo(...) { ... }              // 3
+  private getResourceForUpgrade(...) { ... }        // 4 — вызывается из getCanUpgradeOption/getUpgradeCanDo
+  private getAvailableResourceAmount(...) { ... }   // 5 — листовой хелпер
+}
+```

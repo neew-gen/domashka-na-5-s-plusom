@@ -1,0 +1,3 @@
+export const SUCCESS_BURST_RAY_ANGLES = [-20, 15, 50, 95, 130, 175, 215, 255, 295, 335]
+
+export const SUCCESS_BURST_MS = 560

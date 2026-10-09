@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink: #121212;
+  --color-paper: #f7f7f4;
+  --color-hairline: #d0d0d0;
+  --color-accent: #a81817;
+  --color-success: #4a9e5c;
+  --color-overdue: #b00020;
+  --color-importance-low: #6b6b6b;
+  --color-importance-medium: #8a6d3b;
+  --color-importance-high: #7a3e2e;
+  --font-serif: 'Libre Baskerville', Georgia, serif;
+  --font-sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hairline) transparent;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hairline) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-hairline);
+  border-radius: 0;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ink);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.hairline {
+  border-color: var(--color-hairline);
+}
+
+.trash-fly-target--catch {
+  animation: trash-fly-catch 620ms ease;
+}
+
+@keyframes trash-fly-catch {
+  0%,
+  100% {
+    color: inherit;
+  }
+
+  45% {
+    color: var(--color-accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trash-fly-target--catch {
+    animation: none;
+  }
+}
+
+@layer utilities {
+  .text-success {
+    color: var(--color-success);
+  }
+
+  .bg-success {
+    background-color: var(--color-success);
+  }
+
+  .border-success {
+    border-color: var(--color-success);
+  }
+
+  .checked\:bg-success:checked {
+    background-color: var(--color-success);
+  }
+
+  .checked\:border-success:checked {
+    border-color: var(--color-success);
+  }
+}

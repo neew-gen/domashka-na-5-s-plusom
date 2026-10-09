@@ -1,0 +1,9 @@
+---
+description: Frontend/backend unit tests — vitest globals, no stubs except teleport
+globs:
+  - "**/*.spec.*"
+  - "**/*.test.*"
+alwaysApply: false
+---
+в файлах .spec. не нужно импортировать ничего из vitest. импорты уже глобальны
+не использовать stubs (кроме teleport). это ВАЖНО

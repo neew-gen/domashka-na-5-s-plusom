@@ -1,0 +1,35 @@
+---
+description: Spec-Driven Development (GitHub Spec Kit) — обязательный workflow для task-tracker
+alwaysApply: true
+---
+
+# Spec Kit — task-tracker
+
+Перед реализацией нетривиальных фич — SDD. **Не пиши код без артефактов.** Коммиты — только по явной просьбе. Не переключай/не создавай ветки без явной просьбы.
+
+## Где что лежит
+
+| Артефакт | Путь |
+|----------|------|
+| Конституция | `.specify/memory/constitution.md` |
+| Стиль фронтенда | `frontend/CODE-STYLE.md` |
+| Workspace rules | `.cursor/rules/` |
+| Шаблоны | `.specify/templates/` |
+| Скрипты | `.specify/scripts/bash/` |
+| SDD skills | `.cursor/skills/speckit-*/SKILL.md` |
+| Spec / Plan / Tasks | `specs/###-feature-name/` |
+
+## Workflow
+
+**Минимум:** specify → plan → tasks → implement
+
+**Нетривиальные:** constitution → specify → clarify → plan → checklist → tasks → analyze → implement → converge
+
+## Правила агента
+
+1. Constitution — перед первой фичой и при plan
+2. Перед кодом фронта — Read `frontend/CODE-STYLE.md` + релевантные `.cursor/rules/`
+3. Spec — только what/why; Plan — how; Tasks — `T001` + пути `backend/` | `frontend/`
+4. Implement — строго по `tasks.md`; новые требования — сначала spec
+5. MVP — сначала P1 + Independent Test
+6. Перед UI — skill `ai-design-best-practices`

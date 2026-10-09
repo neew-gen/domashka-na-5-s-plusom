@@ -1,0 +1,27 @@
+---
+description: Frontend composables — только export composable; хелперы в class lib
+globs: frontend/src/libs/composables/**
+alwaysApply: false
+---
+
+# Composables
+
+- Из файла `libs/composables/use-*.ts` наружу экспортируется **только** сам composable (`export const useXxx = …`).
+- Локальные хелперы в том же файле допустимы, но **без** `export`.
+- Функции, нужные снаружи (stores, api, другие libs) — в `libs/classes/*-lib.ts`; composable импортирует их оттуда.
+- Нельзя импортировать «просто функции» из файла composable.
+
+```typescript
+// ❌ BAD — export хелперов из composable
+export const getCurrentLocale = () => ...
+export const useLocalization = () => ...
+
+// ✅ GOOD
+// localization-lib.ts
+export class LocalizationLib {
+  public static getCurrentLocale() { ... }
+}
+// use-localization.ts
+import { LocalizationLib } from '@/libs/classes/localization-lib'
+export const useLocalization = () => { ... }
+```
